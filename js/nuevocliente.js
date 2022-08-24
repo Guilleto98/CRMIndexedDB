@@ -33,8 +33,6 @@
         if(nombre === '' || email === '' || telefono === '' || empresa === ''){
             imprimirAlerta('Todos los campos son obligatorios', 'error')
             return;
-        }else{
-            imprimirAlerta('Cliente agregado correctamente')
         }
 
         // Crear un objeto con la informacion
@@ -57,11 +55,17 @@
             objectStore.add(cliente);
 
             transaction.onerror = function(){
-                console.log('Hubo un error')
+                imprimirAlerta('Hubo un error', 'error')
             };
 
             transaction.oncomplete = function(){
                 console.log('Cliente Agregado')
+
+                imprimirAlerta('El cliente se agrego correctamente');
+
+                setTimeout(()=>{
+                    window.location.href = 'index.html'
+                })
             }
     }
 
